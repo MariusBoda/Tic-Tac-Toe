@@ -49,7 +49,7 @@ public class draw extends JFrame implements MouseListener{
 			g.setColor(Color.BLUE);
 			g.drawString("Welcome to Tic-Tac-Toe!", 220, 50);
 			g.drawString("This is a two player game mode, start by selecting a square!", 115, 75);
-			g.drawString("Games Won", 260, 100);
+			g.drawString("Games Won:", 260, 100);
 			g.drawString("Player 1   " + board.score1 + " -- " + board.score2 + "   Player 2", 214, 125);
 			button();
 
@@ -75,7 +75,8 @@ public class draw extends JFrame implements MouseListener{
 			g.drawString("Congratulations!", 280, 200);
 			g.drawString("Player " + board.player + " Has Won!", 280, 300);
 			g.drawString("Press anywhere to play again.", 280, 350);
-		
+			board.GameOver = false;
+			board.Restart();
 		}
 		if(board.GameTie == true) {
 			g.setColor(BROWN);
@@ -84,10 +85,14 @@ public class draw extends JFrame implements MouseListener{
 			g.drawString("Better Luck Next Time!", 280, 200);
 			g.drawString("Tie Game!", 280, 300);
 			g.drawString("Press anywhere to play again.", 280, 350);
-
+			board.GameOver = false;
+			board.GameTie = false;
+			board.Restart();
 		}
 
 		if(board.test == true && board.turn ==0) {
+			g.setColor(BROWN);
+			g.fillRect(0, 0, 590, 650);
 			g.setColor(Color.black);
 			g.drawRect(80, 150, 430, 430);
 			g.drawLine(223, 150, 223, 580);
@@ -98,8 +103,9 @@ public class draw extends JFrame implements MouseListener{
 			g.setColor(Color.BLUE);
 			g.drawString("Welcome to Tic-Tac-Toe!", 220, 50);
 			g.drawString("This is a two player game mode, start by selecting a square!", 115, 75);
-			g.drawString("Games Won", 260, 100);
+			g.drawString("Games Won:", 260, 100);
 			g.drawString("Player 1   " + board.score1 + " -- " + board.score2 + "   Player 2", 214, 125);
+			button();
 		}
 
 	}
@@ -137,12 +143,16 @@ public class draw extends JFrame implements MouseListener{
 			board.xoButton();
 			repaint();
 			board.checkGame();
+		}
 
-			if(board.GameOver == true) {
-				board.Restart();
+		if(board.GameOver == true) {
+			board.Restart();
+			repaint();
+			if(board.turn == 0) {
 				repaint();
 			}
 		}
+
 	}
 
 	@Override

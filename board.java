@@ -90,7 +90,9 @@ public class board {
 					}
 					else if(turn >= 9) {
 						GameTie = true;
+						GameOver = true;
 						GameOver();
+						
 					}
 				}
 			}
@@ -124,7 +126,9 @@ public class board {
 					}
 					else if(turn >= 9) {
 						GameTie = true;
+						GameOver = true;
 						GameOver();
+						
 					}
 
 				}
@@ -152,7 +156,9 @@ public class board {
 	
 	public static void Restart() {
 		test = true;
-		
+		if(GameOver == false) {
+			turn = 0;
+		}
 	
 	}
 
@@ -175,7 +181,7 @@ public class board {
 	public static void GameOver() {
 		if(turn%2 == 1) {
 			//System.out.print("Player 1 Wins");
-			score1 ++;
+			score1 += 1;
 			player = "1";
 			//turn = 0;
 			initialBoard();
@@ -183,13 +189,15 @@ public class board {
 
 		}
 
-		if(GameTie == true) {
-			initialBoard();
-			print();
-		}
+//		if(GameTie == true) {
+//			initialBoard();
+//			print();
+//		
+//		}
+		
 		if(turn%2 == 0) {
 			//System.out.print("Player 2 Wins");
-			score2 ++;
+			score2 += 1;
 			player = "2";
 			//turn = 0;
 			initialBoard();
